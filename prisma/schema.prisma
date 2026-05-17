@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  amount    Float
+  category  String
+  createdAt DateTime
+}
+
+model Message {
+  id              String   @id @default(cuid())
+  role            String   // 'user', 'assistant', 'system' etc.
+  content         String
+  toolInvocations String?  // Serialized JSON array for tool calls and results
+  createdAt       DateTime @default(now())
+}
